@@ -45,7 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 dateOutput.innerHTML = data.location.localtime.split(' ')[0];
                 timeOutput.innerHTML = data.location.localtime.split(' ')[1];
                 nameOutput.innerHTML = data.location.name;
-                icon.src = data.current.condition.icon;
+                const iconId = data.current.condition.icon; // Icon code from the API
+                const iconUrl = `https:${iconId}`; // Constructing the URL for the icon
+                const iconElement = document.querySelector('.icon');
+                iconElement.src = iconUrl;
+                iconElement.alt = data.current.condition.text;
 
                 cloudOutput.innerHTML = data.current.cloud + "%";
                 humidityOutput.innerHTML = data.current.humidity + "%";
